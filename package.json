@@ -1,6 +1,6 @@
 {
     "name": "alenakush-custom-modal",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A customizable modal component for React with no dependencies",
     "main": "./src/CustomModal.jsx",
     "keywords": [
