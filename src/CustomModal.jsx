@@ -1,36 +1,44 @@
 import React, { useEffect } from "react";
 
+/**
+ * CustomModal - A reusable, fully customizable modal component.
+ */
 function CustomModal({
-  show,
-  title,
-  message,
-  children,
-  onClose,
-  onConfirm,
-  confirmLabel,
-  cancelLabel,
-  showClose = true,
-  style = {},
-  className = "",
+  show,               // Controls visibility of the modal
+  title,              // Optional modal title
+  message,            // Optional message (ignored if children is provided)
+  children,           // Custom content that replaces message
+  onClose,            // Function called when modal is dismissed
+  onConfirm,          // Function called on confirm button click
+  confirmLabel,       // Label for confirm button
+  cancelLabel,        // Label for cancel button
+  showClose = true,   // Whether to show × close button
+  style = {},         // Optional styles for modal parts
+  className = "",     // Additional class for modal box
 }) {
+
+  // Escape key closes modal
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key === "Escape") onClose();
     }
+
     if (show) {
       window.addEventListener("keydown", handleKeyDown);
     }
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [show, onClose]);
 
+  // Don't render anything if not visible
   if (!show) return null;
 
   return (
     <div
       className="modal-overlay"
-      onClick={onClose}
+      onClick={onClose} // Clicking the background closes the modal
       style={{
         position: "fixed",
         inset: 0,
@@ -39,12 +47,12 @@ function CustomModal({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        ...style.overlay,
+        ...style.overlay, // Custom overlay styles
       }}
     >
       <div
         className={`modal-box ${className}`}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()} // Prevent close on modal click
         style={{
           backgroundColor: "#fff",
           padding: "2rem",
@@ -54,7 +62,7 @@ function CustomModal({
           maxWidth: "500px",
           textAlign: "center",
           position: "relative",
-          ...style.modal,
+          ...style.modal, // Custom modal box styles
         }}
       >
         {showClose && (
@@ -69,7 +77,7 @@ function CustomModal({
               fontSize: "1.5rem",
               cursor: "pointer",
               lineHeight: 1,
-              ...style.closeButton,
+              ...style.closeButton, // Custom close button styles
             }}
             aria-label="Close"
           >
@@ -77,14 +85,17 @@ function CustomModal({
           </button>
         )}
 
+        {/* Title */}
         {title && <h2 style={{ marginBottom: "1rem", ...style.title }}>{title}</h2>}
 
+        {/* Either custom content or default message */}
         {children ? (
           <div style={{ ...style.content }}>{children}</div>
         ) : (
           message && <p style={{ marginBottom: "1.5rem", ...style.message }}>{message}</p>
         )}
 
+        {/* Optional buttons */}
         {(confirmLabel || cancelLabel) && (
           <div
             className="modal-buttons"
@@ -93,7 +104,7 @@ function CustomModal({
               justifyContent: "space-between",
               gap: "10px",
               marginTop: "1rem",
-              ...style.buttons,
+              ...style.buttons, // Custom styles for button container
             }}
           >
             {cancelLabel && (
@@ -107,7 +118,7 @@ function CustomModal({
                   borderRadius: "6px",
                   flex: 1,
                   cursor: "pointer",
-                  ...style.cancelButton,
+                  ...style.cancelButton, // Custom cancel button
                 }}
               >
                 {cancelLabel}
@@ -124,7 +135,7 @@ function CustomModal({
                   borderRadius: "6px",
                   flex: 1,
                   cursor: "pointer",
-                  ...style.confirmButton,
+                  ...style.confirmButton, // Custom confirm button
                 }}
               >
                 {confirmLabel}
