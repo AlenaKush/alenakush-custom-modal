@@ -41,7 +41,6 @@ function Example() {
           console.log("Confirmed!");
         }}
         confirmLabel="OK"
-        cancelLabel={null}
         showClose={true}
         style={{
           confirmButton: { backgroundColor: '#007bff', color: '#fff' },
@@ -61,8 +60,8 @@ function Example() {
 | `children`   | `ReactNode`| –          | Optional custom content. Replaces the default message if set.              |
 | `onClose`    | `function` | –          | Required. Called when modal is dismissed (Escape key, backdrop, or cancel).|
 | `onConfirm`  | `function` | –          | Optional callback triggered when confirm button is clicked.                |
-| `confirmLabel` | `string` | `"Confirm"`| Text for the confirm button. Set to `null` to hide the button.             |
-| `cancelLabel` | `string`  | `"Cancel"` | Text for the cancel button. Set to `null` to hide the button.              |
+| `confirmLabel` | `string` | –          | If set, shows a confirm button with this label. `null` hides it.             |
+| `cancelLabel` | `string`  | –          | If set, shows a confirm button with this label. `null` hides it.              |
 | `showClose`  | `boolean`  | `true`     | Whether to show the “×” close button in the top-right corner.              |
 | `style`      | `object`   | `{}`       | Optional styles for parts of the modal (see below).                        |
 | `className`  | `string`   | `""`       | Optional class for the modal box container.                                |
