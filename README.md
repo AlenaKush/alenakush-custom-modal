@@ -14,6 +14,11 @@ A simple, reusable React modal component with support for customizable styles, k
 
 ✅ Can be controlled programmatically
 
+## Prerequisites
+This package is designed for React projects. Make sure React and ReactDOM are installed in your application.
+- React 18 or later
+- ReactDOM 18 or later
+
 ## Installation
 ```bash
 npm install alenakush-custom-modal
